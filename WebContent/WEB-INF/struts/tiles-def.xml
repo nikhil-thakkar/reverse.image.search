@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+<tiles-definitions>
+	<definition name="header" path="/web/layouts/header.jsp"></definition>
+	<definition name="footer" path="/web/layouts/footer.jsp"></definition>
+	<definition name="navigation" path="/web/layouts/topNav.jsp"></definition>
+	
+	<!-- Admin Layout Definition -->
+	<definition name="MainLayout" path="/web/layouts/mainLayout.jsp">
+		<put name="title" value="" />
+		<put name="header" value="header" />
+		<put name="menu" value="0" />
+		<!-- 1 Users -->
+		<!-- 2 Settings -->
+		<!-- 3 Business -->
+		<put name="section" value="0" />
+		<!-- 1 Manage -->
+		<!-- 2 Track -->
+		<!-- 3 Create -->
+		<put name="subSection" value="0" />
+		<!-- 1 Promos -->
+		<!-- 2 Images -->
+		<!-- 3 Overview -->
+		<!-- 4 Promos -->
+		<!-- 5 ContentTypes -->
+		
+		<put name="topNav" value="navigation" />	
+		<put name="body" value="" />
+		<put name="footer" value="footer" />
+	</definition>
+
+	<!-- Home Page -->
+	<definition name="HomePage" extends="MainLayout">
+		<put name="title" value="Home - Kotak" />
+		<put name="menu" value="0" />
+		<put name="section" value="0" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/common/homePageTile.jsp" />
+	</definition>
+	
+	<!-- Error Page -->
+	<definition name="ErrorPage" extends="MainLayout">
+		<put name="title" value="Kotak.com > Error" />
+		<put name="menu" value="0" />
+		<put name="section" value="0" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/common/errorPageTile.jsp" />
+	</definition>
+
+	<!-- Login -->
+	<definition name="Login" extends="MainLayout">
+		<put name="title" value="Kotak.com > Backend Login" />
+		<put name="menu" value="1" />
+		<put name="section" value="0" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/account/loginTile.jsp" />
+	</definition>
+	
+	<!-- UnauthorizedUserHome -->
+	<definition name="UnauthUserHome" extends="MainLayout">
+		<put name="title" value="Kotak.com > Backend" />
+		<put name="menu" value="1" />
+		<put name="section" value="0" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/common/unauthUserHomeTile.jsp" />
+	</definition>
+
+	<!-- Create User -->
+	<definition name="CreateUser" extends="MainLayout">
+		<put name="title" value="Kotak.com > Create User" />
+		<put name="menu" value="1" />
+		<put name="section" value="0" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/admin/createUserTile.jsp" />
+	</definition>
+
+	<!-- View Profile -->
+	<definition name="UserProfile" extends="MainLayout">
+		<put name="title" value="Kotak.com > User Profile" />
+		<put name="menu" value="1" />
+		<put name="section" value="0" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/user/userProfileTile.jsp" />
+	</definition>
+	
+	<!-- Edit Profile -->
+	<definition name="EditProfile" extends="MainLayout">
+		<put name="title" value="Kotak.com > Edit Profile" />
+		<put name="menu" value="1" />
+		<put name="section" value="0" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/user/editProfileTile.jsp" />
+	</definition>
+	
+	<!-- Forgot Password -->
+	<definition name="ForgotPassword" extends="MainLayout">
+		<put name="title" value="Kotak.com > Forgot Password" />
+		<put name="menu" value="0" />
+		<put name="section" value="0" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/user/forgotPasswordTile.jsp" />
+	</definition>
+
+	<!-- About Us -->
+	<definition name="AboutUs" extends="MainLayout">
+		<put name="title" value="Kotak.com > About" />
+		<put name="menu" value="0" />
+		<put name="section" value="0" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/common/aboutUsTile.jsp" />
+	</definition>
+
+	<!-- Manage Promos -->
+	<definition name="ManagePromos" extends="MainLayout">
+		<put name="title" value="Kotak.com > Manage Promos" />
+		<put name="menu" value="0" />
+		<put name="section" value="1" />
+		<put name="subSection" value="1" />
+		<put name="body" value="/web/tiles/promo/managePromosTile.jsp" />
+	</definition>
+	
+	<!-- Admin -->
+	<!-- Home Page -->
+	<definition name="AdminHome" extends="MainLayout">
+		<put name="title" value="Kotak.com > Admin Home" />
+		<put name="menu" value="1" />
+		<put name="section" value="1" />
+		<put name="subSection" value="3" />
+		<put name="body" value="/web/tiles/admin/adminHomePageTile.jsp" />
+	</definition>	
+	<definition name="ChangeSettings" extends="MainLayout">
+		<put name="title" value="Kotak.com > Change Settings" />
+		<put name="menu" value="2" />
+		<put name="section" value="0" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/admin/changeSettingsTile.jsp" />
+	</definition>	
+	
+	<!-- Manage Users -->
+	<definition name="ManageUsers" extends="MainLayout">
+		<put name="title" value="Kotak.com > Manage Users" />
+		<put name="menu" value="1" />
+		<put name="section" value="0" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/admin/manageUsersTile.jsp" />
+	</definition>
+	
+	<!-- Moderator -->
+	<definition name="ModeratorHome" extends="MainLayout">
+		<put name="title" value="Kotak.com > Moderator Home" />
+		<put name="menu" value="0" />
+		<put name="section" value="1" />
+		<put name="subSection" value="1" />
+		<put name="body" value="/web/tiles/moderator/moderatorHomePageTile.jsp" />
+	</definition>	
+
+	<!-- Manage Images -->
+	<definition name="ManageImages" extends="MainLayout">
+		<put name="title" value="Kotak.com > Manage Stock Images" />
+		<put name="menu" value="0" />
+		<put name="section" value="1" />
+		<put name="subSection" value="2" />
+		<put name="body" value="/web/tiles/moderator/manageImagesTile.jsp" />
+	</definition>	
+	
+	<!-- Create Image -->
+	<definition name="CreateImage" extends="MainLayout">
+		<put name="title" value="Kotak.com > Create Image" />
+		<put name="menu" value="0" />
+		<put name="section" value="3" />
+		<put name="subSection" value="2" />
+		<put name="body" value="/web/tiles/moderator/createImageTile.jsp" />
+	</definition>
+
+	<!-- Edit Image -->
+	<definition name="EditImage" extends="MainLayout">
+		<put name="title" value="Kotak.com > Edit Image" />
+		<put name="menu" value="0" />
+		<put name="section" value="3" />
+		<put name="subSection" value="2" />
+		<put name="body" value="/web/tiles/moderator/editImageTile.jsp" />
+	</definition>
+
+	<!-- Manage Business -->
+	<definition name="ManageBusiness" extends="MainLayout">
+		<put name="title" value="Kotak.com > Manage Businesses" />
+		<put name="menu" value="3" />
+		<put name="section" value="0" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/admin/manageBusinessTile.jsp" />
+	</definition>
+	
+	<!-- Create Business -->
+	<definition name="CreateBusiness" extends="MainLayout">
+		<put name="title" value="Kotak.com > Create Business" />
+		<put name="menu" value="3" />
+		<put name="section" value="0" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/admin/createBusinessTile.jsp" />
+	</definition>	
+
+	<!-- Edit Business -->
+	<definition name="EditBusiness" extends="MainLayout">
+		<put name="title" value="Kotak.com > Edit Business" />
+		<put name="menu" value="3" />
+		<put name="section" value="0" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/admin/editBusinessTile.jsp" />
+	</definition>	
+	
+	<!-- Manage Content Type -->
+	<definition name="ManageContentType" extends="MainLayout">
+		<put name="title" value="Kotak.com > Manage ContentTypes" />
+		<put name="menu" value="3" />
+		<put name="section" value="1" />
+		<put name="subSection" value="5" />
+		<put name="body" value="/web/tiles/admin/manageContentTypeTile.jsp" />
+	</definition>
+	
+	<!-- Create ContentType -->
+	<definition name="CreateContentType" extends="MainLayout">
+		<put name="title" value="Kotak.com > Create ContentType" />
+		<put name="menu" value="3" />
+		<put name="section" value="0" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/admin/createContentTypeTile.jsp" />
+	</definition>	
+
+	<!-- Edit ContentType -->
+	<definition name="EditContentType" extends="MainLayout">
+		<put name="title" value="Kotak.com > Edit ContentType" />
+		<put name="menu" value="3" />
+		<put name="section" value="0" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/admin/editContentTypeTile.jsp" />
+	</definition>	
+	
+	
+	<!-- Content Writer -->
+	<definition name="ContentWriterHome" extends="MainLayout">
+		<put name="title" value="Kotak.com > Content Writer Home" />
+		<put name="menu" value="0" />
+		<put name="section" value="1" />
+		<put name="subSection" value="1" />
+		<put name="body" value="/web/tiles/cwriter/contentWriterHomePageTile.jsp" />
+	</definition>
+	
+	<!-- Create Promo -->
+	<definition name="CreatePromo" extends="MainLayout">
+		<put name="title" value="Kotak.com > Create Promo" />
+		<put name="menu" value="0" />
+		<put name="section" value="3" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/promo/createPromoTile.jsp" />
+	</definition>	
+
+	<!-- Promo Details -->
+	<definition name="PromoDetails" extends="MainLayout">
+		<put name="title" value="Kotak.com > Promo Details" />
+		<put name="menu" value="0" />
+		<put name="section" value="1" />
+		<put name="subSection" value="1" />
+		<put name="body" value="/web/tiles/promo/promoDetailsTile.jsp" />
+	</definition>
+	
+	<!-- Promo Edit -->
+	<definition name="EditPromo" extends="MainLayout">
+		<put name="title" value="Kotak.com > Edit Promo" />
+		<put name="menu" value="0" />
+		<put name="section" value="1" />
+		<put name="subSection" value="1" />
+		<put name="body" value="/web/tiles/promo/editPromoTile.jsp" />
+	</definition>
+		
+
+	<!-- Reports -->
+
+	<!-- Track Overview Reports -->
+	<definition name="TrackOverview" extends="MainLayout">
+		<put name="title" value="Kotak.com > Track > Overview" />
+		<put name="menu" value="0" />
+		<put name="section" value="2" />
+		<put name="subSection" value="3" />
+		<put name="body" value="/web/tiles/report/trackOverviewTile.jsp" />
+	</definition>
+	
+	<!-- Track Promo Reports -->
+	<definition name="TrackPromoReports" extends="MainLayout">
+		<put name="title" value="Kotak.com > Track > Promos" />
+		<put name="menu" value="0" />
+		<put name="section" value="2" />
+		<put name="subSection" value="4" />
+		<put name="body" value="/web/tiles/report/trackPromoReportsTile.jsp" />
+	</definition>
+	
+	<!-- Promo Performance -->
+	<definition name="PromoPerformance" extends="MainLayout">
+		<put name="title" value="Kotak.com > Promo Performance" />
+		<put name="menu" value="0" />
+		<put name="section" value="2" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/report/promoPerformanceTile.jsp" />
+	</definition>
+	
+	<!-- Create Banner-->
+	<definition name="CreateBanner" extends="MainLayout">
+		<put name="title" value="Kotak.com > Create Banner" />
+		<put name="menu" value="0" />
+		<put name="section" value="5" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/banner/createBannerTile.jsp" />
+	</definition>
+	
+	<!-- Track Overview Banner Reports -->
+	<definition name="TrackOverviewBanner" extends="MainLayout">
+		<put name="title" value="Kotak.com > Track > Banner" />
+		<put name="menu" value="0" />
+		<put name="section" value="2" />
+		<put name="subSection" value="5" />
+		<put name="body" value="/web/tiles/report/trackOverviewBannerTile.jsp" />
+	</definition>
+	
+	<!-- Manage Banner-->
+	<definition name="ManageBanner" extends="MainLayout">
+		<put name="title" value="Kotak.com > Manage > Banner" />
+		<put name="menu" value="0" />
+		<put name="section" value="5" />
+		<put name="subSection" value="0" />
+		<put name="body" value="/web/tiles/banner/manageBannersTile.jsp" />
+	</definition>
+</tiles-definitions>

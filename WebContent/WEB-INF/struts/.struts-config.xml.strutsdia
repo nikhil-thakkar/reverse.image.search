@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="StrutsProcess">
+ <PROCESS-ITEM ID="#download" NAME="action0" PATH="/download"
+  SHAPE="32,17,0,0" TITLE="downloadForm" TYPE="action" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="#servicerequest" NAME="action1"
+  PATH="/servicerequest" SHAPE="240,33,0,0" TITLE="requestForm"
+  TYPE="action" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="#service1" NAME="action2" PATH="/service1"
+  SHAPE="448,17,0,0" SUBTYPE="forward" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="action2" PATH="/service1.jsp"
+   TARGET="page0" TITLE="forward" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page0" PATH="/service1.jsp" SHAPE="656,17,0,0"
+  SUBTYPE="jsp" TITLE="service1.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="#login" NAME="action3" PATH="/login"
+  SHAPE="32,129,0,0" TITLE="loginForm" TYPE="action" model-entity="StrutsProcessItem"/>
+</PROCESS>

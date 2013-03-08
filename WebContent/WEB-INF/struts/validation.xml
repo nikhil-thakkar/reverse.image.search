@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE form-validation PUBLIC "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+	 "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+<form-validation>
+	<global>
+		<constant>
+			<constant-name>phone</constant-name>
+			<constant-value>^\(?(\d{3})\)?[-| ]?(\d{3})[-| ]?(\d{4})$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>zip</constant-name>
+			<constant-value>^\d{5}\d*$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>mobile</constant-name>
+			<constant-value>^\d{10}\d*$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>digits</constant-name>
+			<constant-value>^\d+$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>username</constant-name>
+			<constant-value>^[a-zA-Z0-9_.]+$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>name</constant-name>
+			<constant-value>^[a-zA-Z0-9_. ]+$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>mobileKotak</constant-name>
+			<constant-value>^[0-9-+]+$</constant-value>
+		</constant>		
+	</global>
+	<!-- Signup Form-->
+	<formset>
+		<!-- AddUserForm -->
+		<form name="addUserForm">
+			<field depends="required, mask" property="emailId">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${username}</var-value>
+				</var>
+				<msg key="Enter valid username." name="mask" resource="false" />
+				<msg key="Enter username." name="required" resource="false" />
+			</field>
+			<field depends="required, email" property="secondaryEmailId">				
+				<msg key="Enter email id." name="required" resource="false" />
+				<msg key="Enter valid email id." name="email" resource="false" />				
+			</field>
+			<field depends="required," property="firstName">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${name}</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>15</var-value>
+				</var>
+				<msg key="Enter first name (Max 15 chars)." name="required" resource="false" />
+				<msg key="Enter valid first name (Max 15 chars)." name="mask" resource="false" />
+				<msg key="Enter first name max of 15 characters." name="maxlength" resource="false" />
+			</field>			
+			<field depends="required, mask, maxlength" property="lastName">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${name}</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>15</var-value>
+				</var>
+				<msg key="Enter last name (Max 15 chars)." name="required" resource="false" />
+				<msg key="Enter valid last name (Max 15 chars)." name="mask" resource="false" />
+				<msg key="Enter last name max of 15 characters." name="maxlength" resource="false" />
+			</field>
+			<field property="businessId" depends="validwhen">
+				<msg key="Please select business" name="validwhen" resource="false" />
+				<var>
+					<var-name>test</var-name>
+					<var-value>( ( *this* != null )  and ( *this* != 0 ) ) </var-value>
+				</var>
+			</field>
+			<!-- 
+			<field property="businessId" depends="validwhen">
+				<msg key="Please select business" name="validwhen" resource="false" />
+				<var>
+					<var-name>test</var-name>
+					<var-value>( ( (userRole=="CW")  and ( *this* != 0 ) ) or ( (userRole!="CW")  and ( *this*==0 ) ) ) </var-value>
+				</var>
+			</field>	
+			<field property="businessIds" depends="validwhen">
+				<msg key="Please select business" name="validwhen" resource="false" />
+				<var>
+					<var-name>test</var-name>
+					<var-value>( ( ( (userRole == "MOD" ) or ( userRole == "ADM") ) and (*this* != null ) ) or ( ( (userRole != "MOD" ) and ( userRole != "ADM") ) and  ( *this* == null  ) ) )</var-value>
+				</var>
+			</field>	
+			 -->	
+			<field property="contactMobile" depends="required, mask, maxlength">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${mobileKotak}</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>14</var-value>
+				</var>
+				<msg key="Enter valid mobile number(max 14 digits)." name="mask" resource="false" />
+				<msg key="Enter mobile number(max 14 digits)." name="required" resource="false" />
+				<msg key="Enter mobile number(max 14 digits)." name="maxlength" resource="false" />
+			</field>
+			<field property="contactOffice" depends="mask, maxlength">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${mobileKotak}</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>14</var-value>
+				</var>
+				<msg key="Enter valid office phone number(max 14 digits)." name="mask" resource="false" />	
+				<msg key="Enter valid office phone number(max 14 digits)." name="maxlength" resource="false" />				
+			</field>
+			<!--
+					<field depends="required" property="captchaText"> <msg key="Word verification failed!" name="required"
+					resource="false" /> </field>
+				-->
+		</form>
+				
+		<!-- ChangePasswordForm -->
+		<form name="changePasswordForm">
+			<field depends="required" property="oldPassword">
+				<msg key="Enter current password" name="required" resource="false" />
+				<arg0 key="Password" resource="false" />
+			</field>
+			<field depends="required, minlength" property="newPassword">
+				<msg key="Enter new password" name="required" resource="false" />
+				<arg0 key="Password" resource="false" />
+				<arg1 key="${var:minlength}" resource="false" />
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>6</var-value>
+				</var>
+			</field>
+			<field property="newPasswordConfirm" depends="validwhen">
+				<msg key="Confirm password doesn't match" name="validwhen" resource="false" />
+				<var>
+					<var-name>test</var-name>
+					<var-value>( ((newPassword == null ) or (*this* == newPassword)) or (*this* == null))</var-value>
+				</var>
+			</field>
+			<field depends="required" property="newPasswordConfirm">
+				<msg key="Confirm new password" name="required" resource="false" />
+			</field>
+		</form>
+				
+		<!-- Edit Profile Form -->
+		<form name="editProfileForm">
+			<field depends="required" property="emailId">
+				<msg key="Enter email address" name="required" resource="false" />
+			</field>
+			<field depends="required, email" property="secondaryEmailId">				
+				<msg key="Enter email id." name="required" resource="false" />
+				<msg key="Enter valid email id." name="email" resource="false" />				
+			</field>
+			<field depends="required" property="firstName">
+				<msg key="Enter first name" name="required" resource="false" />
+			</field>
+			<field depends="required" property="lastName">
+				<msg key="Enter last name" name="required" resource="false" />
+			</field>
+			<!--
+					<field depends="required" property="gender"> <msg key="Select your gender, " name="required" resource="false" />
+					</field>
+				-->
+			<field property="businessId" depends="validwhen">
+				<msg key="Please select business" name="validwhen" resource="false" />
+				<var>
+					<var-name>test</var-name>
+					<var-value>( ( *this* != null )  and ( *this* != 0 ) ) </var-value>
+				</var>
+			</field>
+			<field property="contactMobile" depends="required, mask, maxlength">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${mobileKotak}</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>14</var-value>
+				</var>
+				<msg key="Enter valid mobile number(max 14 digits)." name="mask" resource="false" />
+				<msg key="Enter mobile number(max 14 digits)." name="required" resource="false" />
+				<msg key="Enter mobile number(max 14 digits)." name="maxlength" resource="false" />
+			</field>
+			<field property="contactOffice" depends="mask, maxlength">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${mobileKotak}</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>14</var-value>
+				</var>
+				<msg key="Enter valid office phone number(max 14 digits)." name="mask" resource="false" />	
+				<msg key="Enter valid office phone number(max 14 digits)." name="maxlength" resource="false" />				
+			</field>
+			<!--
+					<field depends="required" property="captchaText"> <msg key="Word verification failed!" name="required"
+					resource="false" /> </field>
+				-->
+		</form>
+		
+		<!-- Create Promo Form 
+			<form name="createPromoForm">
+				<field property="contentType" depends="required">
+					<msg key="Enter content type" name="required" resource="false" />
+				</field>
+				<field property="promoImageId" depends="validwhen" >
+					<arg0 key="image" />
+					<var>
+						<var-name>test</var-name>
+						<var-value>(((contentType == 'Product') and ( (*this* != null) and (*this* != 0) )) or (contentType != 'Product'))</var-value>
+					</var>
+				</field>
+				<field property="productTitle" depends="validwhen">
+					<arg0 key="title" />
+					<var>
+						<var-name>test</var-name>
+						<var-value>(((contentType == 'Product') and (*this* != null)) or (contentType != 'Product'))</var-value>
+					</var>
+				</field>
+				<field property="promoBodyContent" depends="validwhen">
+					<arg0 key="promo.body.content" />
+					<var>
+						<var-name>test</var-name>
+						<var-value>(((contentType == 'Product') and (*this* != null)) or (contentType != 'Product'))</var-value>
+					</var>
+				</field>
+				<field property="productLinkText" depends="validwhen">
+					<arg0 key="link.text" />
+					<var>
+						<var-name>test</var-name>
+						<var-value>(((contentType == 'Product') and (*this* != null)) or (contentType != 'Product'))</var-value>
+					</var>
+				</field>
+				<field property="productTargetURL" depends="validwhen,url">
+					<arg0 key="target.url" />
+					<var>
+						<var-name>test</var-name>
+						<var-value>(((contentType == 'Product') and (*this* != null)) or (contentType != 'Product'))</var-value>
+					</var>
+				</field>
+				<field property="headline" depends="validwhen">
+					<arg0 key="headline" />
+					<var>
+						<var-name>test</var-name>
+						<var-value>(((contentType == 'News') and (*this* != null)) or (contentType != 'News'))</var-value>
+					</var>
+				</field>
+				<field property="newsTargetURL" depends="validwhen,url">
+					<arg0 key="target.url" />
+					<var>
+						<var-name>test</var-name>
+						<var-value>(((contentType == 'News') and (*this* != null)) or (contentType != 'News'))</var-value>
+					</var>
+				</field>
+				<field property="descriptiveTags" depends="validwhen">
+					<arg0 key="tag" />
+					<var>
+						<var-name>test</var-name>
+						<var-value>(((contentType == 'Product') and (*this* != null)) or (contentType != 'Product'))</var-value>
+					</var>
+				</field>	
+				<field property="descriptiveTags" depends="validwhen">
+					<arg0 key="tag" />
+					<var>
+						<var-name>test</var-name>
+						<var-value>(((contentType == 'News') and (*this* != null)) or (contentType != 'News'))</var-value>
+					</var>
+				</field>			
+				<field property="additionalTags" depends="validwhen">
+					<arg0 key="tag" />
+					<var>
+						<var-name>test</var-name>
+						<var-value>(((contentType == 'News') and (*this* != null)) or (contentType != 'News'))</var-value>
+					</var>
+				</field>
+				<field property="additionalTags" depends="validwhen">
+					<arg0 key="tag" />
+					<var>
+						<var-name>test</var-name>
+						<var-value>(((contentType == 'Product') and (*this* != null)) or (contentType != 'Product'))</var-value>
+					</var>
+				</field>					
+			</form> -->
+		<!-- Edit Profile Form -->
+		<form name="changeSettingsForm">
+			<!-- Promo -->
+			<field depends="required, mask" property="promoTitle">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${digits}</var-value>
+				</var>
+				<msg key="Enter valid count" name="mask" resource="false" />
+				<msg key="Required" name="required" resource="false" />
+			</field>
+			<field depends="required, mask" property="promoBody">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${digits}</var-value>
+				</var>
+				<msg key="Enter valid count" name="mask" resource="false" />
+				<msg key="Required" name="required" resource="false" />
+			</field>
+			<field depends="required, mask" property="promoLinkText">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${digits}</var-value>
+				</var>
+				<msg key="Enter valid count" name="mask" resource="false" />
+				<msg key="Required" name="required" resource="false" />
+			</field>
+			<field depends="required, mask" property="promoTierOneTags">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${digits}</var-value>
+				</var>
+				<msg key="Enter valid count" name="mask" resource="false" />
+				<msg key="Required" name="required" resource="false" />
+			</field>
+			<field depends="required, mask" property="promoTierTwoTags">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${digits}</var-value>
+				</var>
+				<msg key="Enter valid count" name="mask" resource="false" />
+				<msg key="Required" name="required" resource="false" />
+			</field>
+			<field depends="required, mask" property="promoHighPriority">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${digits}</var-value>
+				</var>
+				<msg key="Enter valid count" name="mask" resource="false" />
+				<msg key="Required" name="required" resource="false" />
+			</field>
+			<field depends="required, mask" property="promoLowPriority">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${digits}</var-value>
+				</var>
+				<msg key="Enter valid count" name="mask" resource="false" />
+				<msg key="Required" name="required" resource="false" />
+			</field>
+			<field depends="required, mask" property="promoMedPriority">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${digits}</var-value>
+				</var>
+				<msg key="Enter valid count" name="mask" resource="false" />
+				<msg key="Required" name="required" resource="false" />
+			</field>
+			<field depends="required, mask" property="promoMaxExpiry">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${digits}</var-value>
+				</var>
+				<msg key="Enter valid count" name="mask" resource="false" />
+				<msg key="Required" name="required" resource="false" />
+			</field>
+			
+			<!-- Video -->
+			<field depends="required, mask" property="videoTitle">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${digits}</var-value>
+				</var>
+				<msg key="Enter valid count" name="mask" resource="false" />
+				<msg key="Required" name="required" resource="false" />
+			</field>
+			<field depends="required, mask" property="videoLinkText">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${digits}</var-value>
+				</var>
+				<msg key="Enter valid count" name="mask" resource="false" />
+				<msg key="Required" name="required" resource="false" />
+			</field>
+			
+			<!-- News -->
+			<field depends="required, mask" property="newsTitle">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${digits}</var-value>
+				</var>
+				<msg key="Enter valid count" name="mask" resource="false" />
+				<msg key="Required" name="required" resource="false" />
+			</field>
+			<field depends="required, mask" property="newsPerBusiness">
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${digits}</var-value>
+				</var>
+				<msg key="Enter valid count" name="mask" resource="false" />
+				<msg key="Required" name="required" resource="false" />
+			</field>
+		</form>
+	</formset>
+</form-validation>

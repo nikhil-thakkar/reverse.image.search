@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		<!-- Tab Request FormBean -->
+		<form-bean name="requestForm" type="org.apache.struts.action.DynaActionForm">
+			<!-- <form-property name="unique_id" type="java.lang.String" /> -->
+			<form-property name="file1" type="org.apache.struts.upload.FormFile" />
+			<!-- <form-property name="text1" type="org.apache.struts.upload.FormFile" /> -->
+		</form-bean>
+		
+		<form-bean name="loginForm" type="org.apache.struts.action.DynaActionForm">
+			<form-property name="userName" type="java.lang.String" />
+			<form-property name="password" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="downloadForm" type="org.apache.struts.action.DynaActionForm">
+			<!-- <form-property name="unique_id" type="java.lang.String" /> -->
+			<!-- <form-property name="text1" type="org.apache.struts.upload.FormFile" /> -->
+		</form-bean>
+	
+	</form-beans>
+  
+	
+	<!-- Action Mappings -->
+	<action-mappings>
+		<action path="/servicerequest" name="requestForm" scope="request" type="webapp.control.ServiceAction"></action>
+		<action path="/download" name="downloadForm" scope="request" type="webapp.control.DownloadFile"></action>
+		<action path="/service1" forward="/service1.jsp"></action>
+		<action path="/login" name="loginForm" type="webapp.control.Login" scope="session" ></action>
+	</action-mappings>
+	
+	
+	<!-- Configure Cache Control -->
+	<!-- <controller nocache="true" />
+	
+	PlugIn for Hibernate and Scheduler Service
+	<plug-in className="webapp.plugin.HibernateStrutsPlugIn">
+	</plug-in>
+	<plug-in className="webapp.plugin.SchedulerStrutsPlugIn">
+	</plug-in> -->
+</struts-config>
